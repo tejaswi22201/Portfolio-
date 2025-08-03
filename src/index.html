@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tejaswi Venkatesh - Data Science & AI Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Terminal Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-controls">
+                    <span class="control close"></span>
+                    <span class="control minimize"></span>
+                    <span class="control maximize"></span>
+                </div>
+                <span class="terminal-title">tejaswi@portfolio:~$</span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line">
+                    <span class="prompt">tejaswi@portfolio:~$ </span>
+                    <span class="command" id="loading-command"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <div id="loading-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="terminal-prompt">tejaswi@dev:~$ </span>
+                <span class="typing-text">whoami</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">./home</a></li>
+                <li><a href="#about" class="nav-link">./about</a></li>
+                <li><a href="#experience" class="nav-link">./experience</a></li>
+                <li><a href="#projects" class="nav-link">./projects</a></li>
+                <li><a href="#skills" class="nav-link">./skills</a></li>
+                <li><a href="#contact" class="nav-link">./contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="terminal-hero">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="control close"></span>
+                        <span class="control minimize"></span>
+                        <span class="control maximize"></span>
+                    </div>
+                    <span class="terminal-title">portfolio.exe</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="code-line">
+                        <span class="keyword">class</span> 
+                        <span class="class-name">DataScientist</span>
+                        <span class="punctuation">:</span>
+                    </div>
+                    <div class="code-line indent-1">
+                        <span class="keyword">def</span> 
+                        <span class="function">__init__</span>
+                        <span class="punctuation">(</span>
+                        <span class="keyword">self</span>
+                        <span class="punctuation">):</span>
+                    </div>
+                    <div class="code-line indent-2">
+                        <span class="keyword">self</span>
+                        <span class="punctuation">.</span>
+                        <span class="property">name</span> 
+                        <span class="operator">=</span> 
+                        <span class="string">"Tejaswi Venkatesh"</span>
+                    </div>
+                    <div class="code-line indent-2">
+                        <span class="keyword">self</span>
+                        <span class="punctuation">.</span>
+                        <span class="property">role</span> 
+                        <span class="operator">=</span> 
+                        <span class="string">"Data Science & AI Student"</span>
+                    </div>
+                    <div class="code-line indent-2">
+                        <span class="keyword">self</span>
+                        <span class="punctuation">.</span>
+                        <span class="property">location</span> 
+                        <span class="operator">=</span> 
+                        <span class="string">"Hamburg, Germany"</span>
+                    </div>
+                    <div class="code-line indent-2">
+                        <span class="keyword">self</span>
+                        <span class="punctuation">.</span>
+                        <span class="property">passion</span> 
+                        <span class="operator">=</span> 
+                        <span class="string">"Innovation & Technology"</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="downloadCV()">
+                    <i class="fas fa-download"></i> Download CV
+                </button>
+                <button class="btn-secondary" onclick="scrollToSection('contact')">
+                    <i class="fas fa-envelope"></i> Get In Touch
+                </button>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-elements">
+                <div class="floating-icon" style="--delay: 0s"><i class="fab fa-python"></i></div>
+                <div class="floating-icon" style="--delay: 1s"><i class="fab fa-react"></i></div>
+                <div class="floating-icon" style="--delay: 2s"><i class="fas fa-brain"></i></div>
+                <div class="floating-icon" style="--delay: 3s"><i class="fas fa-chart-line"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="terminal-prompt">$ </span>cat about.me
+            </h2>
+            <div class="about-content">
+                <div class="about-terminal">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                            <span class="terminal-title">about.json</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div class="json-content">
+                                <span class="json-bracket">{</span>
+                                <div class="json-line">
+                                    <span class="json-key">"passion"</span><span class="json-colon">:</span> 
+                                    <span class="json-string">"Embracing new technologies for innovative solutions"</span><span class="json-comma">,</span>
+                                </div>
+                                <div class="json-line">
+                                    <span class="json-key">"goal"</span><span class="json-colon">:</span> 
+                                    <span class="json-string">"Leveraging AI/ML to solve real-world problems"</span><span class="json-comma">,</span>
+                                </div>
+                                <div class="json-line">
+                                    <span class="json-key">"experience"</span><span class="json-colon">:</span> 
+                                    <span class="json-string">"2+ years in full-stack development & data science"</span><span class="json-comma">,</span>
+                                </div>
+                                <div class="json-line">
+                                    <span class="json-key">"education"</span><span class="json-colon">:</span> 
+                                    <span class="json-string">"MS in Data Science & AI at University of Hamburg"</span><span class="json-comma">,</span>
+                                </div>
+                                <div class="json-line">
+                                    <span class="json-key">"philosophy"</span><span class="json-colon">:</span> 
+                                    <span class="json-string">"Continuous learning, creating, and innovating"</span>
+                                </div>
+                                <span class="json-bracket">}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="2">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="10">0</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="867">0</div>
+                        <div class="stat-label">CGPA (x100)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="terminal-prompt">$ </span>git log --oneline experience
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Associate Developer</h3>
+                            <span class="timeline-date">Sep 2022 - Sep 2024</span>
+                        </div>
+                        <h4>Tyson IT Solutions Private Limited</h4>
+                        <ul>
+                            <li>Developed React-based Gatsby frontend for Thailand brand website</li>
+                            <li>Built single-page applications for APAC region with focus on performance</li>
+                            <li>Integrated Okta authentication and enhanced security processes</li>
+                            <li>Contributed to ARS software platform development using React</li>
+                            <li>Developed enterprise data models integrating multiple sources</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Gatsby</span>
+                            <span class="tag">GraphQL</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Data Analytics Intern</h3>
+                            <span class="timeline-date">Jul 2022 - Aug 2022</span>
+                        </div>
+                        <h4>Accenture (Virtual Internship)</h4>
+                        <ul>
+                            <li>Data insights and analysis responsibilities</li>
+                            <li>Data quality assessments and reporting</li>
+                            <li>Applied analytical techniques for business insights</li>
+                        </ul>
+                        <div class="tech-tags">
+                            <span class="tag">Data Analysis</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Excel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="terminal-prompt">$ </span>ls -la projects/
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>medLLM</h3>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <p>Medical Language Model for Clinical Decision Support using RoBERTa-based encoding and LLaMA fine-tuning</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">LLM</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> BLEU Score Optimized</span>
+                        <span><i class="fas fa-brain"></i> Medical AI</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Hand Gesture Recognition</h3>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i></a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <p>Real-time Indian Sign Language recognition system using CNN+RNN architecture with 90% accuracy</p>
+                    <div class="tech-tags">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">CNN</span>
+                        <span class="tag">RNN</span>
+                        <span class="tag">OpenCV</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-percentage"></i> 90% Accuracy</span>
+                        <span><i class="fas fa-hands"></i> Accessibility</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="terminal-prompt">$ </span>cat skills.config
+            </h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                    <div class="skill-grid">
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">TypeScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Frameworks & Tools</h3>
+                    <div class="skill-grid">
+                        <div class="skill-item">
+                            <span class="skill-name">React</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">PyTorch</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Docker</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="terminal-prompt">$ </span>./connect.sh
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>tejaswiv22@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+49 15210685436</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Hamburg, Germany</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn Profile</span>
+                    </div>
+                </div>
+                <div class="contact-terminal">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                            <span class="terminal-title">send_message.py</span>
+                        </div>
+                        <div class="terminal-body">
+                            <form class="contact-form">
+                                <div class="form-group">
+                                    <label>name = input("</label>
+                                    <input type="text" placeholder="Your Name" required>
+                                    <label>")</label>
+                                </div>
+                                <div class="form-group">
+                                    <label>email = input("</label>
+                                    <input type="email" placeholder="your.email@domain.com" required>
+                                    <label>")</label>
+                                </div>
+                                <div class="form-group">
+                                    <label>message = input("</label>
+                                    <textarea placeholder="Your message here..." required></textarea>
+                                    <label>")</label>
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <span class="terminal-prompt">$ </span>python send_message.py --execute
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio Toggle -->
+    <div class="audio-toggle" onclick="toggleAudio()">
+        <i class="fas fa-volume-up" id="audio-icon"></i>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="bg-audio" loop>
+        <source src="https://www.soundjay.com/misc/sounds/typing-sound.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
