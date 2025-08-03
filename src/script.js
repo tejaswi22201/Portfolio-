@@ -1,19 +1,146 @@
-// Loading Animation
+class LoadingAudioManager {
+    constructor() {
+        this.typingSound = null;
+        this.audioEnabled = false;
+        this.isLoadingActive = false;
+        this.initAudio();
+    }
+    
+    initAudio() {
+        // Create audio element for typing sounds
+        this.typingSound = new Audio();
+        this.typingSound.preload = 'auto';
+        this.typingSound.volume = 0.4;
+        
+        // Use local audio file (recommended)
+        this.typingSound.src = 'assets/audio/typing-sound.mp3';
+        
+        // Fallback: You can uncomment this line to use online audio for testing
+        // this.typingSound.src = 'https://www.soundjay.com/misc/sounds/typewriter-key-1.mp3';
+        
+        // Handle audio loading errors
+        this.typingSound.addEventListener('error', () => {
+            console.log('Audio file not found - continuing without sound');
+        });
+    }
+    
+    enableAudio() {
+        this.audioEnabled = true;
+        console.log('Loading screen audio enabled');
+    }
+    
+    disableAudio() {
+        this.audioEnabled = false;
+        this.isLoadingActive = false;
+        if (this.typingSound) {
+            this.typingSound.pause();
+            this.typingSound.currentTime = 0;
+        }
+        console.log('Loading screen audio disabled');
+    }
+    
+    playTypingSound() {
+        if (this.audioEnabled && this.isLoadingActive && this.typingSound) {
+            this.typingSound.currentTime = 0;
+            this.typingSound.play().catch(e => {
+                // Silently handle audio play failures (browser restrictions)
+            });
+        }
+    }
+    
+    startLoadingAudio() {
+        this.isLoadingActive = true;
+    }
+    
+    stopLoadingAudio() {
+        this.isLoadingActive = false;
+        this.disableAudio();
+    }
+}
+
+// Initialize Loading Audio Manager
+const loadingAudio = new LoadingAudioManager();
+
+// Enhanced Loading Animation with Audio
 document.addEventListener('DOMContentLoaded', function() {
     const loadingScreen = document.getElementById('loading-screen');
     const loadingCommand = document.getElementById('loading-command');
     const loadingOutput = document.getElementById('loading-output');
     
-    const commands = [
-        'npm install portfolio-dependencies...',
-        'Building React components...',
-        'Initializing data science modules...',
-        'Loading AI models...',
-        'Compiling TypeScript...',
-        'Portfolio ready! 🚀'
-    ];
+    if (!loadingScreen || !loadingCommand || !loadingOutput) {
+        console.log('Loading elements not found');
+        return;
+    }
+    
+  const commands = [
+    'npm install portfolio-dependencies...',
+    'Loading React & TypeScript modules...',
+    'Building React components...',
+    'Setting up data visualization libraries...',
+    'Initializing data science modules...',
+    'Connecting to analytics APIs...',
+    'Loading AI models...',
+    'Building interactive dashboards...',
+    'Optimizing data rendering...',
+    'Compiling TypeScript...',
+    'Setting up real-time data streams...',
+    'Portfolio ready! 🚀',
+    'Data Science & Frontend Developer Online ✨'
+];
+
     
     let commandIndex = 0;
+    
+    // Enable audio on first user interaction with loading screen
+    function enableAudioOnInteraction() {
+        loadingAudio.enableAudio();
+        loadingAudio.startLoadingAudio();
+        
+        // Remove event listeners after first interaction
+        loadingScreen.removeEventListener('click', enableAudioOnInteraction);
+        loadingScreen.removeEventListener('touchstart', enableAudioOnInteraction);
+        loadingScreen.removeEventListener('keydown', enableAudioOnInteraction);
+        
+        // Show audio enabled indicator
+        const audioIndicator = document.createElement('div');
+        audioIndicator.innerHTML = '<i class="fas fa-volume-up"></i> Audio Enabled';
+        audioIndicator.style.cssText = `
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #00ff41;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            opacity: 0.7;
+        `;
+        loadingScreen.appendChild(audioIndicator);
+        
+        setTimeout(() => {
+            if (audioIndicator.parentNode) {
+                audioIndicator.remove();
+            }
+        }, 2000);
+    }
+    
+    // Add event listeners for enabling audio
+    loadingScreen.addEventListener('click', enableAudioOnInteraction);
+    loadingScreen.addEventListener('touchstart', enableAudioOnInteraction);
+    loadingScreen.addEventListener('keydown', enableAudioOnInteraction);
+    
+    // Add instruction for audio
+    const audioInstruction = document.createElement('div');
+    audioInstruction.innerHTML = '<i class="fas fa-hand-pointer"></i> Click to enable typing sounds';
+    audioInstruction.style.cssText = `
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #666;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        animation: pulse 2s infinite;
+    `;
+    loadingScreen.appendChild(audioInstruction);
     
     function typeCommand() {
         if (commandIndex < commands.length) {
@@ -25,8 +152,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadingCommand.textContent += command[charIndex];
                 charIndex++;
                 
+                // Play typing sound every 2-3 characters for realistic effect
+                if (charIndex % 3 === 0) {
+                    loadingAudio.playTypingSound();
+                }
+                
                 if (charIndex === command.length) {
                     clearInterval(typeInterval);
+                    
+                    // Play final keystroke sound
+                    loadingAudio.playTypingSound();
                     
                     setTimeout(() => {
                         const output = document.createElement('div');
@@ -38,7 +173,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (commandIndex < commands.length) {
                             setTimeout(typeCommand, 500);
                         } else {
+                            // Loading complete - stop audio and hide loading screen
                             setTimeout(() => {
+                                loadingAudio.stopLoadingAudio();
                                 loadingScreen.classList.add('hidden');
                                 setTimeout(() => {
                                     loadingScreen.style.display = 'none';
@@ -51,57 +188,60 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    setTimeout(typeCommand, 1000);
+    // Start the loading animation
+    setTimeout(() => {
+        typeCommand();
+        // Remove audio instruction after animation starts
+        setTimeout(() => {
+            if (audioInstruction.parentNode) {
+                audioInstruction.remove();
+            }
+        }, 2000);
+    }, 1000);
 });
 
-// Navigation
+// Navigation functionality (no audio here)
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    if (hamburger && navMenu) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    }
 }));
 
 // Smooth scrolling for navigation links
 function scrollToSection(sectionId) {
-    document.getElementById(sectionId).scrollIntoView({
-        behavior: 'smooth'
-    });
+    const element = document.getElementById(sectionId);
+    if (element) {
+        element.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
 }
 
 // Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+    if (navbar) {
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+        } else {
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+        }
     }
 });
 
-// Typing effect for hero section
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    type();
-}
-
-// Animated counters for stats
+// Animated counters for stats (no audio)
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
@@ -151,7 +291,7 @@ document.querySelectorAll('.stat-number, .skill-progress, .timeline-item, .proje
     observer.observe(el);
 });
 
-// Particle system for background
+// Particle system for background (no audio)
 function createParticles() {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -242,35 +382,17 @@ function createParticles() {
 // Initialize particles
 createParticles();
 
-// Audio functionality
-let audioPlaying = false;
-const audio = document.getElementById('bg-audio');
-const audioIcon = document.getElementById('audio-icon');
-
-function toggleAudio() {
-    if (audioPlaying) {
-        audio.pause();
-        audioIcon.className = 'fas fa-volume-mute';
-    } else {
-        audio.play().catch(e => console.log('Audio play failed:', e));
-        audioIcon.className = 'fas fa-volume-up';
-    }
-    audioPlaying = !audioPlaying;
-}
-
-// Download CV function
+// Download CV function (no audio)
 function downloadCV() {
-    // In a real implementation, this would download the actual CV file
     const link = document.createElement('a');
     link.href = '#'; // Replace with actual CV file path
     link.download = 'Tejaswi_Venkatesh_CV.pdf';
     link.click();
     
-    // Show notification
     showNotification('CV download started!', 'success');
 }
 
-// Notification system
+// Notification system (no audio)
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -299,44 +421,31 @@ function showNotification(message, type = 'info') {
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
-            document.body.removeChild(notification);
+            if (notification.parentNode) {
+                document.body.removeChild(notification);
+            }
         }, 300);
     }, 3000);
 }
 
-// Form submission
-document.querySelector('.contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const name = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const message = this.querySelector('textarea').value;
-    
-    // Simulate form submission
-    showNotification('Message sent successfully!', 'success');
-    
-    // Reset form
-    this.reset();
-});
-
-// Terminal command simulation
-function simulateTerminalCommand(command, output) {
-    console.log(`$ ${command}`);
-    console.log(output);
+// Form submission (no audio)
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = this.querySelector('input[type="text"]').value;
+        const email = this.querySelector('input[type="email"]').value;
+        const message = this.querySelector('textarea').value;
+        
+        showNotification('Message sent successfully!', 'success');
+        this.reset();
+    });
 }
 
-// Add some fun terminal commands to console
-setTimeout(() => {
-    simulateTerminalCommand('whoami', 'Tejaswi Venkatesh - Data Science & AI Enthusiast');
-    simulateTerminalCommand('pwd', '/home/tejaswi/portfolio');
-    simulateTerminalCommand('ls -la skills/', 'Python, React, TypeScript, PyTorch, Machine Learning');
-}, 2000);
-
-// Easter egg - Konami code
+// Easter egg - Konami code (no audio)
 let konamiCode = [];
-const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
 
 document.addEventListener('keydown', function(e) {
     konamiCode.push(e.keyCode);
@@ -353,7 +462,7 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Add CSS animations
+// Add CSS animations for smooth effects
 const style = document.createElement('style');
 style.textContent = `
     .animate {
@@ -377,6 +486,11 @@ style.textContent = `
     
     .notification.error {
         background: #dc3545 !important;
+    }
+    
+    @keyframes pulse {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
     }
 `;
 document.head.appendChild(style);
