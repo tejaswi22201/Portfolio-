@@ -72,21 +72,33 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     
-  const commands = [
-    'npm install portfolio-dependencies...',
-    'Loading React & TypeScript modules...',
-    'Building React components...',
-    'Setting up data visualization libraries...',
-    'Initializing data science modules...',
-    'Connecting to analytics APIs...',
+//   const commands = [
+//     'npm install portfolio-dependencies...',
+//     'Loading React & TypeScript modules...',
+//     'Building React components...',
+//     'Setting up data visualization libraries...',
+//     'Initializing data science modules...',
+//     'Connecting to analytics APIs...',
+//     'Loading AI models...',
+//     'Building interactive dashboards...',
+//     'Optimizing data rendering...',
+//     'Compiling TypeScript...',
+//     'Setting up real-time data streams...',
+//     'Portfolio ready! 🚀',
+//     'Data Science & Frontend Developer Online ✨'
+// ];
+
+const commands = [
+    'npm install portfolio-deps...',
+    'Loading React modules...',
+    'Setting up data visualization...',
+    'Initializing data science...',
     'Loading AI models...',
-    'Building interactive dashboards...',
-    'Optimizing data rendering...',
+    'Building dashboards...',
     'Compiling TypeScript...',
-    'Setting up real-time data streams...',
-    'Portfolio ready! 🚀',
-    'Data Science & Frontend Developer Online ✨'
+    'Data Science Portfolio Online ✨'
 ];
+
 
     
     let commandIndex = 0;
